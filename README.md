@@ -1,11 +1,15 @@
 # 酒馆预设下载
 
-三个版本均为完整 JSON 预设，并内置开关脚本：凝女版「绮罗万象」、BL 凝视 CHAR 版、BL 凝视 USER 版。
+**[打开中文 JSON 下载页](https://jiuyi777.github.io/huangshanghuang-qiluo/)**
 
-**[打开 JSON 下载页面](https://jiuyi777.github.io/huangshanghuang-qiluo/)**
+- [窥玉·凝视角色版.json](https://jiuyi777.github.io/huangshanghuang-qiluo/%E7%AA%A5%E7%8E%89%C2%B7%E5%87%9D%E8%A7%86%E8%A7%92%E8%89%B2%E7%89%88.json)
+- [窥玉·凝视玩家版.json](https://jiuyi777.github.io/huangshanghuang-qiluo/%E7%AA%A5%E7%8E%89%C2%B7%E5%87%9D%E8%A7%86%E7%8E%A9%E5%AE%B6%E7%89%88.json)
+- [绮罗万象·男女双向版.json](https://jiuyi777.github.io/huangshanghuang-qiluo/%E7%BB%AE%E7%BD%97%E4%B8%87%E8%B1%A1%C2%B7%E7%94%B7%E5%A5%B3%E5%8F%8C%E5%90%91%E7%89%88.json)
+- [绮棠·凝视玩家版.json](https://jiuyi777.github.io/huangshanghuang-qiluo/%E7%BB%AE%E6%A3%A0%C2%B7%E5%87%9D%E8%A7%86%E7%8E%A9%E5%AE%B6%E7%89%88.json)
+- [绮棠·凝视角色版.json](https://jiuyi777.github.io/huangshanghuang-qiluo/%E7%BB%AE%E6%A3%A0%C2%B7%E5%87%9D%E8%A7%86%E8%A7%92%E8%89%B2%E7%89%88.json)
 
-手机请从上面的页面点击下载。GitHub Release 的附件响应是通用二进制类型，部分安卓文件选择器会把它标灰；上面的页面提供 JSON 类型文件。
+五版均为预设自带脚本，按预设实际顺序显示，条目配有简短功能说明。男女双向版对应 GBG，绮棠为 GL。
 
-下载后，在酒馆「聊天补全 → 预设」中导入，允许酒馆助手运行预设脚本，从魔棒打开「绮罗册」或「窥玉笺」。
+已解除娇弱感／攻气与右位的旧绑定；GL 角色版将形象、人格、身份与身体选项作用于角色。3.7f 格式适配参考本机蛇果 v1.39 的尾部结构，模型与接口参数保留原值。格式和脚本已本地检查，真实模型尚未测试。
 
-三个版本都使用一句话功能说明，并按照预设实际顺序显示条目。
+手机请从上方下载页获取 JSON，页面使用 application/json 类型，避免 Release 的二进制响应导致文件变灰。
