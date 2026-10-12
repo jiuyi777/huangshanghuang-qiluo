@@ -24,21 +24,55 @@
     },
     "regex_scripts": [
       {
-        "id": "4e75689d-d2b8-43d6-a819-249fdcae2df7",
-        "scriptName": "思考内容美化（兼容旧标签）",
         "disabled": false,
-        "runOnEdit": true,
-        "findRegex": "/<(?:planing|thinking)>([\\s\\S]*?)<\\/(?:planing|thinking)>/ig",
-        "trimStrings": [],
-        "replaceString": "```html\n<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n    <meta charset=\"UTF-8\">\n</head>\n<body>\n    <style>\n        /* 样式隔离，限定在 thinking-container 内 */\n        .thinking-container {\n            background-color: #fcfcfd;\n            border: 1px solid #eceef1;\n            border-radius: 12px;\n            margin: 8px 0;\n            max-width: 90%;\n            font-family: 'Nunito', 'Quicksand', 'Varela Round', 'PingFang SC', 'Microsoft YaHei', sans-serif;\n            color: #666666;\n            overflow: hidden;\n            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);\n        }\n        \n        .thinking-summary {\n            padding: 10px 14px;\n            cursor: pointer;\n            font-size: 0.85em;\n            font-weight: 500;\n            color: #8c8c8c;\n            display: flex;\n            align-items: center;\n            justify-content: space-between;\n            transition: background-color 0.2s ease;\n            user-select: none;\n            -webkit-tap-highlight-color: transparent;\n        }\n        \n        .thinking-summary:hover {\n            background-color: #f5f6f8;\n        }\n        \n        .thinking-title-left {\n            display: flex;\n            align-items: center;\n            gap: 6px;\n        }\n        \n        .thinking-arrow {\n            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n            font-size: 0.8em;\n            opacity: 0.6;\n        }\n        \n        /* 展开状态下的箭头旋转 */\n        .thinking-container.expanded .thinking-arrow {\n            transform: rotate(180deg);\n        }\n        \n        /* 利用 CSS Grid 实现丝滑的展开/收起动画 */\n        .thinking-content-wrapper {\n            display: grid;\n            grid-template-rows: 0fr;\n            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n        }\n        \n        .thinking-container.expanded .thinking-content-wrapper {\n            grid-template-rows: 1fr;\n        }\n        \n        .thinking-content {\n            overflow: hidden;\n        }\n        \n        .thinking-inner {\n            padding: 0 14px 14px 14px;\n            font-size: 0.85em;\n            line-height: 1.6;\n            white-space: pre-wrap;\n            border-top: 1px solid #eceef1;\n            margin-top: 4px;\n            padding-top: 10px;\n        }\n    </style>\n\n    <div class=\"thinking-container\">\n        <!-- 点击触发父元素的 expanded 类名切换 -->\n        <div class=\"thinking-summary\" onclick=\"this.parentElement.classList.toggle('expanded')\">\n            <div class=\"thinking-title-left\">\n                <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"opacity: 0.7;\">\n                    <circle cx=\"12\" cy=\"12\" r=\"10\"></circle>\n                    <path d=\"M12 16v-4\"></path>\n                    <path d=\"M12 8h.01\"></path>\n                </svg>\n                <span>已完成思考 (ฅ>ω<*ฅ)</span>\n            </div>\n            <span class=\"thinking-arrow\">▼</span>\n        </div>\n        <div class=\"thinking-content-wrapper\">\n            <div class=\"thinking-content\">\n                <div class=\"thinking-inner\">$1</div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>\n```",
+        "findRegex": "/(```[\\s\\S]*?(?:```|$)|~~~[\\s\\S]*?(?:~~~|$)|`[^`\\n]*`|<(?:script|style)\\b[^>]*>[\\s\\S]*?<\\/(?:script|style)\\s*>|<[^>\\n]+>|https?:\\/\\/[^\\s<>]+)|(?<![不未无没非])(?:(?:指节|骨节)分明(?:的)?(?=(?:修长的|纤长的|白皙的)?(?:手指|双手|手掌|手背|手))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:低沉而危险|低沉而富有磁性|富有磁性|细若蚊蝇|细若蚊呐|几不可闻|低哑|沙哑|低沉|磁性|甜腻|慵懒|破碎|短促|穿云裂石)的(?:、(?=(?:低沉而危险|低沉而富有磁性|富有磁性|细若蚊蝇|细若蚊呐|几不可闻|低哑|沙哑|低沉|磁性|甜腻|慵懒|破碎|短促|穿云裂石)的))?)+(?=(?:声音|嗓音|声线|语调|语气|笑声|低笑|声响|叹息|尖叫))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:意味深长|若有若无|狡黠|戏谑|古井无波|毫无生气|空洞|复杂|深邃|幽深|森冷|凛冽|冰冷|高高在上|居高临下)的(?:、(?=(?:意味深长|若有若无|狡黠|戏谑|古井无波|毫无生气|空洞|复杂|深邃|幽深|森冷|凛冽|冰冷|高高在上|居高临下)的))?)+(?=(?:目光|眼神|视线|眼眸|眸子|笑意|笑容|神情|表情|审视|弧度))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:不容置喙|不容抗拒|不容反驳|不容拒绝|不容置疑|不容质疑|毋庸置疑|无可辩驳)的(?:、(?=(?:不容置喙|不容抗拒|不容反驳|不容拒绝|不容置疑|不容质疑|毋庸置疑|无可辩驳)的))?)+(?=(?:语气|口吻|态度|命令|要求|宣告|判断|力量|气势|压迫感))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:无法言说|说不清道不明|不可名状|难以名状|难以言喻|难以形容|前所未有|刻骨铭心|铺天盖地|狂风暴雨般|灾难性|灭顶|病态|偏执|狂热|虔诚)的(?:、(?=(?:无法言说|说不清道不明|不可名状|难以名状|难以言喻|难以形容|前所未有|刻骨铭心|铺天盖地|狂风暴雨般|灾难性|灭顶|病态|偏执|狂热|虔诚)的))?)+(?=(?:情绪|情感|感觉|感受|情愫|情意|爱意|渴望|执念|欲望|占有欲|保护欲|喜悦|悲伤|痛苦|恐惧|绝望|快感|吸引力))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:机械式|机械化|机械|无意识|习惯性|不自觉|漫不经心|缓慢而坚定|缓慢但坚定|精准|准确无误)的(?:、(?=(?:机械式|机械化|机械|无意识|习惯性|不自觉|漫不经心|缓慢而坚定|缓慢但坚定|精准|准确无误)的))?)+(?=(?:动作|举动|回应|回答|重复|点头|摇头|停顿|触碰))|(?<!用|以|用一种|以一种|用那种|以那种)(?:(?:生理性)的(?:、(?=(?:生理性)的))?)+(?=(?:泪水|眼泪|战栗|颤抖|反应))|(?:极其|极为|极度|尤为|分外|格外|异常|十分|非常|颇为|倍感|略显|稍显)(?:地|的)?(?=(?:安静|平静|寂静|清晰|清楚|缓慢|迅速|轻柔|温柔|柔和|温暖|柔软|冰冷|寒冷|沉重|轻盈|细腻|疲惫|紧张|不安|尴尬|犹豫|拘谨|局促|生硬|僵硬|冷淡|冷漠|热情|兴奋|激动|惊讶|诧异|愤怒|烦躁|难过|悲伤|痛苦|失落|茫然|困惑|清醒|认真|专注|谨慎|熟悉|陌生|明显|浓厚|浓烈))|极(?=轻微|细微|短促|轻柔|轻盈|轻巧|轻[的地]|细[的地]|短[的地])|(?:令人牙酸|几不可察|微不可察|不易察觉|难以察觉|无法形容|无法言喻|无与伦比|无可比拟)的(?=(?:笑意|笑容|声音|声响|叹息|颤抖|变化|动作|神情|表情|目光|情绪|喜悦|悲伤|痛苦|恐惧|美丽)))/g",
+        "id": "2e39f16a-860c-47d7-a16a-7f202faf500a",
+        "markdownOnly": true,
+        "maxDepth": null,
+        "minDepth": null,
         "placement": [
           2
         ],
+        "promptOnly": true,
+        "replaceString": "$1",
+        "runOnEdit": true,
+        "scriptName": "杀八股@寒·轻量修订",
         "substituteRegex": 0,
-        "minDepth": null,
-        "maxDepth": null,
+        "trimStrings": []
+      },
+      {
+        "disabled": false,
+        "findRegex": "/(?:<[t]hinking\\b[^>]*>([\\s\\S]*?)<\\/[t]hinking\\s*>|^(?![\\s\\S]*<[t]hinking\\b)([\\s\\S]*?)<\\/[t]hinking\\s*>)/gi",
+        "id": "c8252745-52d8-4df6-9140-8a7dfbdfc491",
         "markdownOnly": true,
-        "promptOnly": false
+        "maxDepth": null,
+        "minDepth": null,
+        "placement": [
+          2
+        ],
+        "promptOnly": false,
+        "replaceString": "<details class=\"sx-ui\" data-sx-kind=\"思考过程\">\n<summary title=\"思考过程 · 点击展开或收起\" aria-label=\"思考过程，点击展开或收起\"><span class=\"sx-orn\" aria-hidden=\"true\">˚₊♰˙˚</span><span class=\"sx-label\">思考过程</span><span class=\"sx-orn\" aria-hidden=\"true\">˚˙♡₊˚</span><span class=\"sx-toggle\" aria-hidden=\"true\"><span class=\"sx-when-open\">收起</span><span class=\"sx-when-closed\">展开</span></span></summary>\n<div class=\"sx-body\"><div class=\"sx-text\">$1$2</div></div>\n<style>.sx-ui{box-sizing:border-box;width:100%;min-width:0;margin:9px 0 14px;font:inherit;color:inherit;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}\n.sx-ui *{box-sizing:border-box}\n.sx-ui>summary{display:flex;align-items:center;gap:9px;width:100%;max-width:100%;min-height:42px;padding:5px 3px;cursor:pointer;list-style:none;user-select:none;font:inherit;color:inherit;background:transparent!important;border:0!important;box-shadow:none!important}\n.sx-ui>summary::-webkit-details-marker{display:none}.sx-ui>summary::marker{content:\"\"}\n.sx-ui>summary:focus-visible,.sx-ui button:focus-visible{outline:1px solid currentColor;outline-offset:3px}\n.sx-ui .sx-orn{flex:0 0 auto;display:inline-block;white-space:nowrap;font-family:\"Noto Sans Symbols 2\",\"Segoe UI Symbol\",\"Noto Sans Symbols\",\"Apple Symbols\",\"Noto Sans Egyptian Hieroglyphs\",serif;font-size:.91em;font-weight:400;line-height:1.7;letter-spacing:0;opacity:.74;pointer-events:none}\n.sx-ui .sx-label{min-width:0;font-size:.86em;letter-spacing:.09em;line-height:1.7;opacity:.87;overflow-wrap:anywhere}\n.sx-ui .sx-toggle{display:inline-flex;flex:0 0 auto;margin-left:auto;white-space:nowrap;font-size:.68em;line-height:1.7;letter-spacing:.03em;opacity:.58}\n.sx-ui .sx-when-open{display:none}.sx-ui[open]>summary .sx-when-open{display:inline}.sx-ui[open]>summary .sx-when-closed{display:none}\n.sx-ui[open]>summary .sx-orn,.sx-ui>summary:hover .sx-orn{opacity:1}\n.sx-ui .sx-body{margin:2px 0 0;padding:0 4px 8px;font-size:.92em;line-height:1.75;color:inherit;overflow-wrap:anywhere;word-break:normal;background:transparent!important;border:0!important;box-shadow:none!important}\n.sx-ui .sx-text{white-space:pre-wrap;overflow-wrap:anywhere}.sx-ui .sx-row{display:grid;grid-template-columns:5em minmax(0,1fr);gap:10px;margin:8px 0}.sx-ui .sx-key{opacity:.69;font-size:.92em}.sx-ui .sx-value{min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}\n@media(max-width:480px){.sx-ui>summary{gap:7px;padding-inline:2px}.sx-ui .sx-orn{font-size:.85em}.sx-ui .sx-body{padding-inline:2px}.sx-ui .sx-row{grid-template-columns:4.5em minmax(0,1fr);gap:8px}}\n@media(max-width:300px){.sx-ui>summary{gap:5px}.sx-ui .sx-orn{font-size:.75em}.sx-ui .sx-toggle{font-size:.63em}}</style>\n</details>",
+        "runOnEdit": true,
+        "scriptName": "十字爱心·thinking-生成完自动折叠",
+        "substituteRegex": 0,
+        "trimStrings": []
+      },
+      {
+        "disabled": false,
+        "findRegex": "/<[t]hinking\\b[^>]*>(?![\\s\\S]*<\\/[t]hinking\\s*>)([\\s\\S]*)$/gi",
+        "id": "09f8e1c1-eb86-4610-9cf0-9b7462eea296",
+        "markdownOnly": true,
+        "maxDepth": null,
+        "minDepth": null,
+        "placement": [
+          2
+        ],
+        "promptOnly": false,
+        "replaceString": "<details class=\"sx-ui\" open data-sx-kind=\"思考中\">\n<summary title=\"思考中 · 点击展开或收起\" aria-label=\"思考中，点击展开或收起\"><span class=\"sx-orn\" aria-hidden=\"true\">˚₊♰˙˚</span><span class=\"sx-label\">思考中</span><span class=\"sx-orn\" aria-hidden=\"true\">˚˙♡₊˚</span><span class=\"sx-toggle\" aria-hidden=\"true\"><span class=\"sx-when-open\">收起</span><span class=\"sx-when-closed\">展开</span></span></summary>\n<div class=\"sx-body\"><div class=\"sx-text\">$1</div></div>\n<style>.sx-ui{box-sizing:border-box;width:100%;min-width:0;margin:9px 0 14px;font:inherit;color:inherit;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}\n.sx-ui *{box-sizing:border-box}\n.sx-ui>summary{display:flex;align-items:center;gap:9px;width:100%;max-width:100%;min-height:42px;padding:5px 3px;cursor:pointer;list-style:none;user-select:none;font:inherit;color:inherit;background:transparent!important;border:0!important;box-shadow:none!important}\n.sx-ui>summary::-webkit-details-marker{display:none}.sx-ui>summary::marker{content:\"\"}\n.sx-ui>summary:focus-visible,.sx-ui button:focus-visible{outline:1px solid currentColor;outline-offset:3px}\n.sx-ui .sx-orn{flex:0 0 auto;display:inline-block;white-space:nowrap;font-family:\"Noto Sans Symbols 2\",\"Segoe UI Symbol\",\"Noto Sans Symbols\",\"Apple Symbols\",\"Noto Sans Egyptian Hieroglyphs\",serif;font-size:.91em;font-weight:400;line-height:1.7;letter-spacing:0;opacity:.74;pointer-events:none}\n.sx-ui .sx-label{min-width:0;font-size:.86em;letter-spacing:.09em;line-height:1.7;opacity:.87;overflow-wrap:anywhere}\n.sx-ui .sx-toggle{display:inline-flex;flex:0 0 auto;margin-left:auto;white-space:nowrap;font-size:.68em;line-height:1.7;letter-spacing:.03em;opacity:.58}\n.sx-ui .sx-when-open{display:none}.sx-ui[open]>summary .sx-when-open{display:inline}.sx-ui[open]>summary .sx-when-closed{display:none}\n.sx-ui[open]>summary .sx-orn,.sx-ui>summary:hover .sx-orn{opacity:1}\n.sx-ui .sx-body{margin:2px 0 0;padding:0 4px 8px;font-size:.92em;line-height:1.75;color:inherit;overflow-wrap:anywhere;word-break:normal;background:transparent!important;border:0!important;box-shadow:none!important}\n.sx-ui .sx-text{white-space:pre-wrap;overflow-wrap:anywhere}.sx-ui .sx-row{display:grid;grid-template-columns:5em minmax(0,1fr);gap:10px;margin:8px 0}.sx-ui .sx-key{opacity:.69;font-size:.92em}.sx-ui .sx-value{min-width:0;white-space:pre-wrap;overflow-wrap:anywhere}\n@media(max-width:480px){.sx-ui>summary{gap:7px;padding-inline:2px}.sx-ui .sx-orn{font-size:.85em}.sx-ui .sx-body{padding-inline:2px}.sx-ui .sx-row{grid-template-columns:4.5em minmax(0,1fr);gap:8px}}\n@media(max-width:300px){.sx-ui>summary{gap:5px}.sx-ui .sx-orn{font-size:.75em}.sx-ui .sx-toggle{font-size:.63em}}</style>\n</details>",
+        "runOnEdit": true,
+        "scriptName": "十字爱心·thinking-生成中自动展开",
+        "substituteRegex": 0,
+        "trimStrings": []
       },
       {
         "id": "47545be9-8868-4b8c-a949-92347d4695e4",
@@ -90,23 +124,6 @@
         "maxDepth": null,
         "markdownOnly": true,
         "promptOnly": false
-      },
-      {
-        "id": "3e7e1b87-afe2-4f64-9832-c42f09822c1c",
-        "scriptName": "杀八股@sillyfish11(噤若寒蝉)",
-        "disabled": false,
-        "runOnEdit": true,
-        "findRegex": "/(?:令人牙酸|劣质|廉价|生锈的|昂贵的|极大程度地|生理性|几不可察|居高临下|精准地|准确无误地|无与伦比|无可比拟|不易察觉|难以察觉|微不可察|无法形容|无法言喻|难以想象|难以置信|不容置喙|不容抗拒|不容反驳|不容拒绝|不容置疑|极其|极为|极轻微|极轻|极细微|极细|极短促|极短|极致的|极度的|一丝丝|一丝|异常|分外|格外|近乎|殆尽|沙哑的|易碎的)(?:\\s*[的地])?(?!\\s*(?:[，。！？、；,.!?;…]|$))/g",
-        "trimStrings": [],
-        "replaceString": "",
-        "placement": [
-          2
-        ],
-        "substituteRegex": 0,
-        "minDepth": null,
-        "maxDepth": null,
-        "markdownOnly": true,
-        "promptOnly": true
       },
       {
         "id": "fe4a5faf-2e2f-4ad9-8138-e9e691514595",
