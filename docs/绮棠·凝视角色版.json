@@ -1503,7 +1503,7 @@
             },
             {
               "identifier": "d95f9c26-b79a-43ca-9c07-832325760d54",
-              "name": "⚝user塑造特点开始（可多选）",
+              "name": "⚝角色塑造特点开始（可多选）",
               "enabled": true,
               "injection_position": 0,
               "injection_depth": 4,
@@ -2959,7 +2959,7 @@
             },
             {
               "identifier": "efd1bdd4-cce5-448b-9125-1ed90cff30d2",
-              "name": "⚝user塑造特点结束",
+              "name": "⚝角色塑造特点结束",
               "enabled": true,
               "injection_position": 0,
               "injection_depth": 4,
@@ -6400,7 +6400,7 @@
     },
     {
       "identifier": "d95f9c26-b79a-43ca-9c07-832325760d54",
-      "name": "⚝user塑造特点开始（可多选）",
+      "name": "⚝角色塑造特点开始（可多选）",
       "enabled": true,
       "injection_position": 0,
       "injection_depth": 4,
@@ -7856,7 +7856,7 @@
     },
     {
       "identifier": "efd1bdd4-cce5-448b-9125-1ed90cff30d2",
-      "name": "⚝user塑造特点结束",
+      "name": "⚝角色塑造特点结束",
       "enabled": true,
       "injection_position": 0,
       "injection_depth": 4,
