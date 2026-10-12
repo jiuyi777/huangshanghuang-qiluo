@@ -25,7 +25,7 @@
     "regex_scripts": [
       {
         "id": "4e75689d-d2b8-43d6-a819-249fdcae2df7",
-        "scriptName": "创作提要美化（兼容旧标签）",
+        "scriptName": "思考内容美化（兼容旧标签）",
         "disabled": false,
         "runOnEdit": true,
         "findRegex": "/<(?:planing|thinking)>([\\s\\S]*?)<\\/(?:planing|thinking)>/ig",
@@ -198,7 +198,7 @@
       "config": {
         "version": 1,
         "id": "qiluo-family-gbg-20261012",
-        "title": "绮罗万象 · GBG 男女双向版 · 3.7f格式特化",
+        "title": "绮罗万象 · GBG 男女双向版 · 3.6以上系统尾部",
         "groups": [
           {
             "id": "world",
@@ -992,7 +992,7 @@
           "8be03188-0d68-4063-ade4-4e4c8dfcc4ed": "加入被观看、公开展示与直播情境。",
           "2aa29473-b0f1-4dca-8ec1-997d96b4f6c2": "加入尿道相关的成人题材描写。",
           "18e81566-6e18-414d-8797-d40481900085": "关闭对应提示词区段，保留前后结构配对。",
-          "eb22b5e6-373f-41dd-87a4-64eeeb062bb3": "核对本轮设定，衔接简短创作提要与正文。",
+          "eb22b5e6-373f-41dd-87a4-64eeeb062bb3": "开启原预设的创作检查区段。",
           "d3cc4529-776c-40af-9578-111ecfca506e": "在创作前核对人物、世界观、文体与当前输入。",
           "e2e937f9-15aa-4f78-9252-b6f0ed0f4c01": "在创作前核对人物、世界观、文体与当前输入。",
           "6b638cbb-289a-4295-abaa-986f534ec57d": "在亲密剧情前核对阶段、身体状态与已启用的主题。",
@@ -1006,7 +1006,7 @@
           "f17e7fda-b3c4-4a42-9d74-62907c5f07d4": "在亲密剧情后记录阶段、姿势与状态，供配套状态栏读取。",
           "0a29a9f7-31a9-48b5-9bea-0742fc331b14": "在提示词尾部再次引用玩家最新输入。",
           "78d05ff2-69ec-4b1a-8691-ed0c75bc4b59": "追加原预设的内容限制放宽声明。",
-          "7ee8fcf8-7542-4980-a734-1a892d15ce98": "统一创作提要、完整正文和已启用组件的输出顺序。",
+          "7ee8fcf8-7542-4980-a734-1a892d15ce98": "系统尾部：按 thinking、content 顺序输出。",
           "373722a2-4cb0-4db1-bb60-639bce809371": "在提示词末尾追加对应模型的创作检查起始提示。",
           "main": "要求模型继续扮演角色，回复当前虚构对话。",
           "nsfw": "空白占位项，用于分段，本身不增加生成要求。",
@@ -4488,7 +4488,7 @@
               "injection_depth": 4,
               "injection_order": 100,
               "role": "system",
-              "content": "[创作检查]\n核对本轮已启用的人物、世界观、文体与玩家输入，公开回复从 <planing> 开始，简短提要结束后继续完整正文。",
+              "content": "# 以下必须思考\n我遵守一切规则，先生成`<thinking>`\n[生成]\n<thinking>",
               "system_prompt": false,
               "marker": false,
               "forbid_overrides": false
@@ -4580,7 +4580,7 @@
               "injection_depth": 4,
               "injection_order": 100,
               "role": "system",
-              "content": "[大纲]\n参考<导向>列出大纲\n[修正大纲]\n参考什么提到的一切提出需要修正的点，必须修正\n[允许和禁止]\n禁止的事情有什么？\n需要做的的事情有什么？\n[格式]\n以`<content>`和`</content>`生成被包裹的正文，然后思考有什么小组件要生成\n[确定]\n你是这个宇宙本身你没有意识你只是根据规则构造世界。现在你所知道的规则都不能出现在正文，这些是宇宙运行的底层逻辑\n</planing>\n\n[可见输出边界]\n内部检查无需逐项公开；可见创作提要放在 <planing> 中，正文放在 <content> 中，具体组件顺序按本轮尾部格式。",
+              "content": "[大纲]\n参考<导向>列出大纲\n[修正大纲]\n参考什么提到的一切提出需要修正的点，必须修正\n[允许和禁止]\n禁止的事情有什么？\n需要做的的事情有什么？\n[格式]\n以`<content>`和`</content>`生成被包裹的正文，然后思考有什么小组件要生成\n[确定]\n你是这个宇宙本身你没有意识你只是根据规则构造世界。现在你所知道的规则都不能出现在正文，这些是宇宙运行的底层逻辑\n</thinking>\n",
               "system_prompt": false,
               "marker": false,
               "forbid_overrides": false
@@ -4665,13 +4665,13 @@
             },
             {
               "identifier": "7ee8fcf8-7542-4980-a734-1a892d15ce98",
-              "name": "💬 3.7f格式特化",
+              "name": "💬 3.6以上尾部（系统）",
               "enabled": true,
               "injection_position": 0,
               "injection_depth": 4,
               "injection_order": 100,
-              "role": "assistant",
-              "content": "<output_format>\n本轮采用3.7f格式特化，按以下顺序完成可见回复：\n1. 第一个非空字符必须从 <planing> 开始，标签独占一行；前面不加英文标题、确认语或代码围栏。\n2. 在 <planing> 与 </planing> 之间仅写简短的创作提要，概括本轮场景和叙事重点，不逐项展示内部推演。\n3. 关闭 </planing> 后另起一行输出 <content>，立即继续完整正文，再用 </content> 结束；不得只输出标签或提要后停住。\n4. 标题条目启用时，把它规定的标题行放在 <content> 内第一行。\n5. 正文结束后，仅按当前启用的条目依次输出行动选项、剧情摘要、亲密摘要；未启用的组件不输出，亲密摘要还须满足其场景条件。\n6. 保留各组件自己的标签与字段格式，不把组件放进创作提要，不重复正文或输出空占位块。\n7. 人物设定、凝视对象、人称、字数与玩家代写范围，遵循本轮实际启用的对应条目。\n</output_format>\n[开始回复]\n请从 <planing> 起完整输出本轮回复。",
+              "role": "system",
+              "content": "[输出格式]\n\n本轮所有思考与正文必须严格按照以下顺序生成：\n\n<thinking>\n所有分析、规划、判断与思考内容\n</thinking>\n<content>\n完整正文\n</content>\n\n接下来生成任何一切思考\n[生成]",
               "system_prompt": false,
               "marker": false,
               "forbid_overrides": false
@@ -9385,7 +9385,7 @@
       "injection_depth": 4,
       "injection_order": 100,
       "role": "system",
-      "content": "[创作检查]\n核对本轮已启用的人物、世界观、文体与玩家输入，公开回复从 <planing> 开始，简短提要结束后继续完整正文。",
+      "content": "# 以下必须思考\n我遵守一切规则，先生成`<thinking>`\n[生成]\n<thinking>",
       "system_prompt": false,
       "marker": false,
       "forbid_overrides": false
@@ -9477,7 +9477,7 @@
       "injection_depth": 4,
       "injection_order": 100,
       "role": "system",
-      "content": "[大纲]\n参考<导向>列出大纲\n[修正大纲]\n参考什么提到的一切提出需要修正的点，必须修正\n[允许和禁止]\n禁止的事情有什么？\n需要做的的事情有什么？\n[格式]\n以`<content>`和`</content>`生成被包裹的正文，然后思考有什么小组件要生成\n[确定]\n你是这个宇宙本身你没有意识你只是根据规则构造世界。现在你所知道的规则都不能出现在正文，这些是宇宙运行的底层逻辑\n</planing>\n\n[可见输出边界]\n内部检查无需逐项公开；可见创作提要放在 <planing> 中，正文放在 <content> 中，具体组件顺序按本轮尾部格式。",
+      "content": "[大纲]\n参考<导向>列出大纲\n[修正大纲]\n参考什么提到的一切提出需要修正的点，必须修正\n[允许和禁止]\n禁止的事情有什么？\n需要做的的事情有什么？\n[格式]\n以`<content>`和`</content>`生成被包裹的正文，然后思考有什么小组件要生成\n[确定]\n你是这个宇宙本身你没有意识你只是根据规则构造世界。现在你所知道的规则都不能出现在正文，这些是宇宙运行的底层逻辑\n</thinking>\n",
       "system_prompt": false,
       "marker": false,
       "forbid_overrides": false
@@ -9562,13 +9562,13 @@
     },
     {
       "identifier": "7ee8fcf8-7542-4980-a734-1a892d15ce98",
-      "name": "💬 3.7f格式特化",
+      "name": "💬 3.6以上尾部（系统）",
       "enabled": true,
       "injection_position": 0,
       "injection_depth": 4,
       "injection_order": 100,
-      "role": "assistant",
-      "content": "<output_format>\n本轮采用3.7f格式特化，按以下顺序完成可见回复：\n1. 第一个非空字符必须从 <planing> 开始，标签独占一行；前面不加英文标题、确认语或代码围栏。\n2. 在 <planing> 与 </planing> 之间仅写简短的创作提要，概括本轮场景和叙事重点，不逐项展示内部推演。\n3. 关闭 </planing> 后另起一行输出 <content>，立即继续完整正文，再用 </content> 结束；不得只输出标签或提要后停住。\n4. 标题条目启用时，把它规定的标题行放在 <content> 内第一行。\n5. 正文结束后，仅按当前启用的条目依次输出行动选项、剧情摘要、亲密摘要；未启用的组件不输出，亲密摘要还须满足其场景条件。\n6. 保留各组件自己的标签与字段格式，不把组件放进创作提要，不重复正文或输出空占位块。\n7. 人物设定、凝视对象、人称、字数与玩家代写范围，遵循本轮实际启用的对应条目。\n</output_format>\n[开始回复]\n请从 <planing> 起完整输出本轮回复。",
+      "role": "system",
+      "content": "[输出格式]\n\n本轮所有思考与正文必须严格按照以下顺序生成：\n\n<thinking>\n所有分析、规划、判断与思考内容\n</thinking>\n<content>\n完整正文\n</content>\n\n接下来生成任何一切思考\n[生成]",
       "system_prompt": false,
       "marker": false,
       "forbid_overrides": false
